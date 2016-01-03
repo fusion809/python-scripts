@@ -14,10 +14,10 @@ def f(x, t):
     return [sigma*(x[1]-x[0]), x[0]*(rho-x[2])-x[1], x[0]*x[1]-beta*x[2]]
 
 t    = np.arange(tmin, tmax, h)
-asol = integrate.odeint(f, [x0, y0, z0], t)
-x    = asol[:,0]
-y    = asol[:,1]
-z    = asol[:,2]
+sol  = integrate.odeint(f, [x0, y0, z0], t)
+x    = sol[:,0]
+y    = sol[:,1]
+z    = sol[:,2]
 
 # Call the plot function if you want to plot the data
 def plot():
