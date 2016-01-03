@@ -4,7 +4,8 @@ from scipy import integrate
 from mpl_toolkits.mplot3d import axes3d
 from math import cos
 from matplotlib import pyplot as plt
-a, b = 0, 100
+a, b = 0, 200
+x0, y0, z0 = 0, 1, 0
 sigma, rho, beta = 10, 28, 8/3
 N = 1000000
 h = (b-a) / float(N)
@@ -13,7 +14,7 @@ def f(x, t):
     return [sigma*(x[1]-x[0]), x[0]*(rho-x[2])-x[1], x[0]*x[1]-beta*x[2]]
 
 t    = np.arange(a, b, h)
-asol = integrate.odeint(f, [0, 1, 1], t)
+asol = integrate.odeint(f, [x0, y0, z0], t)
 x    = asol[:,0]
 y    = asol[:,1]
 z    = asol[:,2]
