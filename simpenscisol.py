@@ -1,4 +1,5 @@
 # Simple Pendulum SciPy solver
+# Based on http://www.nathantypanski.com/blog/2014-08-23-ode-solver-py.html
 # d^2 theta / dt^2 = -g/l cos(theta)
 import numpy as np
 from scipy import integrate
@@ -9,13 +10,13 @@ g, l = 9.8, 1
 N = 10000000
 h = (b-a) / float(N)
 
-def solvr(Y, t):
-    return [Y[1], -g/l*cos(Y[0])]
+def f(x, t):
+    return [x[1], -g/l*cos(x[0])]
 
 t    = np.arange(a, b, h)
-asol = integrate.odeint(solvr, [0, 0], t)
-th   = asol[:,0]
-dth  = asol[:,1]
+sol  = integrate.odeint(f, [0, 0], t)
+th   = sol[:,0]
+dth  = sol[:,1]
 
 # Call the plot function if you want to plot theta against t
 # and a phase plot of d{theta}/dt against theta.
@@ -26,3 +27,5 @@ def plot():
     plt.figure(2)
     plt.plot(th,dth)
     plt.show()
+
+plot()
