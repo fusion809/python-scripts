@@ -1,5 +1,5 @@
 # By Jake Vanderplas
-# https://jakevdp.github.io/blog/2013/02/16/animating-the-lorentz-system-in-3d/
+# /home/fusion809/python-scripts/lorenz_animation.py
 import numpy as np
 from scipy import integrate
 
@@ -21,7 +21,7 @@ np.random.seed(1)
 x0 = -15 + 30 * np.random.random((N_trajectories, 3))
 
 # Solve for the trajectories
-t = np.linspace(0, 4, 1000)
+t = np.linspace(0, 40, 10000)
 x_t = np.asarray([integrate.odeint(lorentz_deriv, x0i, t)
                   for x0i in x0])
 
@@ -79,6 +79,6 @@ anim = animation.FuncAnimation(fig, animate, init_func=init,
                                frames=500, interval=30, blit=True)
 
 # Save as mp4. This requires mplayer or ffmpeg to be installed
-anim.save('lorentz_attractor.mp4', fps=15, extra_args=['-vcodec', 'libx264'])
+#anim.save('lorentz_attractor.mp4', fps=15, extra_args=['-vcodec', 'libx264'])
 
 plt.show()
