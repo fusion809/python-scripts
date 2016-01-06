@@ -10,8 +10,9 @@ sigma, rho, beta = 10, 28, 8/3
 N = 1000000
 h = (tmax - tmin) / float(N)
 
-def f(x, t):
-    return [sigma*(x[1]-x[0]), x[0]*(rho-x[2])-x[1], x[0]*x[1]-beta*x[2]]
+def f(X, t):
+    x, y, z = X[0], X[1], X[2]
+    return [sigma*(y-x), x*(rho-z)-y, x*y-beta*z]
 
 t    = np.arange(tmin, tmax, h)
 sol  = integrate.odeint(f, [x0, y0, z0], t)
