@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # By Jake Vanderplas
 # /home/fusion809/python-scripts/lorenz_animation.py
 import numpy as np
