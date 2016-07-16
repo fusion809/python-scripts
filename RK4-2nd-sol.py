@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import RK42nd
 g=9.8
 l=1

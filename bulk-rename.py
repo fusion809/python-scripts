@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import glob, os
 
 def rename(dir, pattern, titlePattern):

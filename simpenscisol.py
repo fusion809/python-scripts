@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Simple Pendulum SciPy solver
 # Based on http://www.nathantypanski.com/blog/2014-08-23-ode-solver-py.html
 # d^2 theta / dt^2 = -g/l cos(theta)

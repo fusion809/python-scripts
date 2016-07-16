@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Rossler Equations SciPy solver
 import numpy as np
 from scipy import integrate

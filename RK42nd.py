@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 def h(g,l,t, x1, v1):
     from math import cos
     return ( -g/l*cos(x1) )
