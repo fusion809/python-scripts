@@ -14,7 +14,7 @@ def RK4(h, x, y, dy):
     L3=h * (dy + K2/2)
     K4=h * f(x + h, y + L3, dy + K3)
     L4=h * (dy + K3)
-    return matrix([1/6*(L1+2*L2+2*L3+L4), 1/6*(K1+2*K2+2*K3+K4)])
+    return matrix([1/6 * (L1 + 2 * L2 + 2 * L3 + L4), 1/6 * (K1 + 2 * K2 + 2 * K3 + K4)])
 
 x0=0
 x1=3
