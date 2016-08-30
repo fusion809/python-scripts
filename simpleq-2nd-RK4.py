@@ -2,7 +2,6 @@
 from numpy import cos
 from numpy import matrix
 from numpy import pi
-from numpy import abs
 
 def f(x, y, dy):
     return - 9.8 * cos(y)
