@@ -1,3 +1,4 @@
+# Import the required modules
 from numpy import cos
 from numpy import matrix
 
