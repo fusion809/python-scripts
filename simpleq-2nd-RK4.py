@@ -18,17 +18,17 @@ def RK4(h, x, y, dy):
     L4=h * (dy + K3)
     return matrix([1/6 * (L1 + 2 * L2 + 2 * L3 + L4), 1/6 * (K1 + 2 * K2 + 2 * K3 + K4)])
 
-x0=0
-x1=3
-rtol=1e-4
-y0=0
-dy0=0
-N=1000000
-h=(x1-x0)/N
-x=x0
-y=y0
-dy=dy0
-miny=-3.14159265
+x0 = 0
+x1 = 3
+rtol = 1e-4
+y0 = 0
+dy0 = 0
+N = 1000000
+h = (x1-x0)/N
+x = x0
+y = y0
+dy = dy0
+miny = -3.14159265
 err = abs(miny + pi)
 
 while x < x1 - rtol:
@@ -43,4 +43,3 @@ print(RK[0,0])
 print(RK[0,1])
 print("x[N] is", x)
 print("y[N] is", y)
-print("err is", err)
