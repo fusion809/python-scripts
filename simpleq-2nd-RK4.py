@@ -1,6 +1,8 @@
 # Import the required modules
 from numpy import cos
 from numpy import matrix
+from numpy import pi
+from numpy import abs
 
 def f(x, y, dy):
     return - 9.8 * cos(y)
@@ -27,19 +29,18 @@ x=x0
 y=y0
 dy=dy0
 miny=-3.14159265
+err = abs(miny + pi)
 
 while x < x1 - rtol:
     RK = RK4(h, x, y, dy)
     y = y + RK[0,0]
     dy = dy + RK[0,1]
     x = x + h
-    while y < miny:
-        miny = y
-        print("x is", x)
-        print("y is", y)
+    while abs(y+pi) < err:
+        err = abs(y+pi)
 
 print(RK[0,0])
 print(RK[0,1])
 print("x[N] is", x)
 print("y[N] is", y)
-print("miny is", miny)
+print("err is", err)
