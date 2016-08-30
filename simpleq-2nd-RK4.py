@@ -38,8 +38,6 @@ while x < x1 - rtol:
     while abs(y+pi) < err:
         err = abs(y+pi)
 
-print(RK[0,0])
-print(RK[0,1])
 print("x[N] is", x)
 print("y[N] is", y)
 print("err is", err)
