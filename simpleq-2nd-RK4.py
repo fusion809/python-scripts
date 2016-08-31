@@ -56,7 +56,8 @@ err = abs(miny + pi)
 
 # integrate y until x => x1 - rtol
 while x < x1 - rtol:
-    # RK is a 1x2 vector
+    # RK is a 1x2 vector of the incremental changes to be made to y and dy since
+    # the previous x value
     RK = RK4(h, x, y, dy)
     # Add RK correction to y
     y = y + RK[0,0]
