@@ -19,11 +19,11 @@ def RK4(h, x, y, dy):
 
 x0 = 0
 x1 = 3
-rtol = 1e-4
-y0 = 0
-dy0 = 0
 N = 1000000
 h = (x1-x0)/N
+rtol = h/2
+y0 = 0
+dy0 = 0
 x = x0
 y = y0
 dy = dy0
