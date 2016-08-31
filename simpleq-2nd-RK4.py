@@ -40,17 +40,27 @@ y = y0
 dy = dy0
 # miny is the minimum y value. This should be equal to exactly negative pi!
 miny = -3.14159265
+# this is how much the minimum y value differs from its expected value, -pi
 err = abs(miny + pi)
 
+# integrate y until x => x1 - rtol
 while x < x1 - rtol:
+    # RK is a 1x2 vector
     RK = RK4(h, x, y, dy)
+    # Add RK correction to y
     y = y + RK[0,0]
+    # Add RK correction to dy
     dy = dy + RK[0,1]
+    # Add h to x
     x = x + h
+    # This is designed to determine miny and the error
     while abs(y+pi) < err:
         miny = y
         err = abs(y+pi)
 
+# print x[N]
 print("x[N] is", x)
+# print y[N]
 print("y[N] is", y)
+# print error
 print("err is", err)
