@@ -69,9 +69,9 @@ while x < x1 - rtol:
         miny = y
         err = abs(y+pi)
 
-# print x[N]
+# print x[N], i.e., the final x value calculated in the above while loop
 print("x[N] is", x)
-# print y[N]
+# print y[N], the final y value calculated in the above loop
 print("y[N] is", y)
 # print error
 print("err is", err)
