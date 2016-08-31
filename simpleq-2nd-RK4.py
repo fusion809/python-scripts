@@ -4,7 +4,7 @@ from numpy import cos, matrix, pi
 # The ODE we're solving is (note d2 = d^2 in the following equations):
 # d2y/dx2 = -g/l cos(y)
 # (which is the equation of the Simple Pendulum where y is the angle
-# from the x axis; and x is time in seconds)
+# from the x axis; and x is the time in seconds)
 # g is the acceleration due to gravity, namely ~9.8 m/s2
 # l is the length of the rod
 def f(x, y, dy):
