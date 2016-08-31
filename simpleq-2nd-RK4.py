@@ -1,7 +1,5 @@
 # Import the required modules
-from numpy import cos
-from numpy import matrix
-from numpy import pi
+from numpy import cos, matrix, pi
 
 def f(x, y, dy):
     return - 9.8 * cos(y)
