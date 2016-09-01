@@ -1,5 +1,5 @@
 # Import the required modules
-from numpy import cos, matrix, pi
+from numpy import cos, matrix, pi, log10
 
 # The ODE we're solving is (note d2 = d^2 in the following equations):
 # d2y/dx2 = -g/l cos(y)
@@ -16,7 +16,7 @@ def f(x, y, dy):
     return -g/l * cos(y)
 
 # Fourth-order Runge-Kutta (RK4) function
-# You can look it up here 
+# You can look it up here
 # http://mathworld.wolfram.com/Runge-KuttaMethod.html
 def RK4(h, x, y, dy):
     K1=h * f(x, y, dy)
@@ -30,9 +30,9 @@ def RK4(h, x, y, dy):
     return matrix([1/6 * (L1 + 2 * L2 + 2 * L3 + L4), 1/6 * (K1 + 2 * K2 + 2 * K3 + K4)])
 
 # integrating on x in [0,3]; x0 is 0; x1 is 3
-x0, x1 = 0, 3 
-# N points the solution is being integrated over. 
-N = 1000000
+x0, x1 = 0, 3
+# N points the solution is being integrated over.
+N = 10000000
 # h is the step size, that is, the distance between each individual
 # integration point
 h = (x1-x0)/N
@@ -69,6 +69,7 @@ while x < x1 - rtol:
     while abs(y+pi) < err:
         miny = y
         err = abs(y+pi)
+        logerr = log10(err)
 
 # print x[N], i.e., the final x value calculated in the above while loop
 print("x[N] is", x)
@@ -76,3 +77,5 @@ print("x[N] is", x)
 print("y[N] is", y)
 # print error
 print("err is", err)
+# error log to base 10
+print("log10 of err is", logerr)
