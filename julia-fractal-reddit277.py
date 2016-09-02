@@ -1,3 +1,4 @@
+# https://www.reddit.com/r/dailyprogrammer/comments/4v5h3u/20160729_challenge_277_hard_trippy_julia_fractals/
 from PIL import Image
 
 f = lambda q: q*q + complex(-0.221, -0.713)
