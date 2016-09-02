@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Import the required modules
 from numpy import cos, matrix, pi, log10
 

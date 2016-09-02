@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Lorenz Equations SciPy solver
 import numpy as np
 from scipy import integrate

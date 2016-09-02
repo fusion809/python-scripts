@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """A variety of methods to solve first order ordinary differential equations.
 
