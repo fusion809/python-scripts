@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# URL: http://stackoverflow.com/a/227125
 import glob, os
 
 def rename(dir, pattern, titlePattern):
