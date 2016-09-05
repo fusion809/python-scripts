@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import time
+start = time.time() # start time
 # Import the required modules
 from numpy import cos, matrix, pi, log10
 
@@ -12,7 +14,7 @@ from numpy import cos, matrix, pi, log10
 # d2y/dx2 = f(x, y, dy)
 # where f(x, y, dy) is the function defined below
 def f(x, y, dy):
-    g = 9.8
+    g = 9.785
     l = 1
     return -g/l * cos(y)
 
@@ -33,7 +35,7 @@ def RK4(h, x, y, dy):
 # integrating on x in [0,3]; x0 is 0; x1 is 3
 x0, x1 = 0, 3
 # N points the solution is being integrated over.
-N = 1000000
+N = 10000000
 # h is the step size, that is, the distance between each individual
 # integration point
 h = (x1-x0)/N
@@ -51,7 +53,7 @@ y = y0
 # initializing the dy variable at dy0
 dy = dy0
 # miny is the minimum y value. This should be equal to exactly negative pi!
-miny = -3.14159265
+miny = -3.14159
 # this is how much the minimum y value differs from its expected value, -pi
 err = abs(miny + pi)
 
@@ -80,3 +82,4 @@ print("y[N] is", y)
 print("err is", err)
 # error log to base 10
 print("log10 of err is", logerr)
+print("It took", round(time.time()-start, ndigits=2), "seconds for this script to run.")
