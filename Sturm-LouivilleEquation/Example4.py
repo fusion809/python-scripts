@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+# https://pythonhosted.org/scikits.bvp_solver/examples/examples.example4.html
 #based off of this fortran example http://cs.stmarys.ca/~muir/BVP_SOLVER_Files/mathieu.f90
 # use of function derivative callback
 # function callback for a guess
