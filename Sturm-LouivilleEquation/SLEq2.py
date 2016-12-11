@@ -36,4 +36,6 @@ for m in range(0,N+1):
 y = (b-a)/2*x + (a+b)/2
 H = -4/((b-a)**2)*d2T + k*diag(y)*T
 Hn = LA.inv(T) * H
+Hn = Hn[1:N,1:N]
 LAM, Y = LA.eig(Hn)
+print(LAM[0])
