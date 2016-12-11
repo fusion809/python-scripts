@@ -11,7 +11,7 @@ from numpy import pi
 from numpy import sqrt
 from numpy import diag
 from scipy import linalg as LA
-N  = 10000
+N  = 1000
 a  = 0
 b  = 10
 ya = 0
