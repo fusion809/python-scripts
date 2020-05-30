@@ -1,0 +1,27 @@
+N is 10000000
+x[N] is 2.369049722274103
+y[N] is 1.159991661877271e-14
+err is 6.394884621840902e-14
+log10 of err is -13.194167286767792
+It took 291.99 seconds for this script to run.
+
+N is 1000000
+x[N] is 2.369049722172926
+y[N] is -1.2865219677529567e-14
+err is 6.661338147750939e-14
+log10 of err is -13.176438519807359
+It took 29.61 seconds for this script to run.
+
+N is 100000
+x[N] is 2.3690497221731683
+y[N] is -1.38070055657516e-15
+err is 2.220446049250313e-15
+log10 of err is -14.653559774527022
+It took 2.94 seconds for this script to run.
+
+N is 10000
+x[N] is 2.3690497221754776
+y[N] is -1.0408962630983686e-14
+err is 3.1086244689504383e-15
+log10 of err is -14.507431738848783
+It took 0.3 seconds for this script to run.

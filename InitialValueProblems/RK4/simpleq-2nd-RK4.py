@@ -2,25 +2,31 @@
 import time
 start = time.time() # start time
 # Import the required modules
-from numpy import cos, matrix, pi, log10, zeros
+from numpy import cos, matrix, pi, log10, zeros, sqrt, sin, abs
+from scipy.integrate import quad
 from matplotlib import pyplot as plt
 from matplotlib import rc
 plt.rc('text', usetex=True)
+g = 9.8
+l = 1
 
 # The ODE we're solving is (note d2 = d^2 in the following equations):
 # d2y/dx2 = -g/l cos(y)
 # (which is the equation of the Simple Pendulum where y is the angle
-# from the x axis; and x is the time in seconds,
+# from the x axis and x is the time in seconds,
 # g is the acceleration due to gravity, namely ~9.8 m/s2
 # l is the length of the rod)
 # this equation can be re-written as:
 # d2y/dx2 = f(x, y, dy)
 # where f(x, y, dy) is the function defined below
 def f(x, y, dy):
-    g = 9.785
-    l = 1
     return -g/l * cos(y)
 
+def j(y):
+    return 1/sqrt(-2*g/l*sin(y))
+
+T=abs(quad(j, 0, -pi))
+T=T[0]
 # Fourth-order Runge-Kutta (RK4) function
 # You can look it up here
 # http://mathworld.wolfram.com/Runge-KuttaMethod.html
@@ -36,7 +42,7 @@ def RK4(h, x, y, dy):
     return matrix([1/6 * (L1 + 2 * L2 + 2 * L3 + L4), 1/6 * (K1 + 2 * K2 + 2 * K3 + K4)])
 
 # integrating on x in [0,3]; x0 is 0; x1 is 3
-x0, x1 = 0, 3
+x0, x1 = 0, 2*T
 # N points the solution is being integrated over.
 N = 10000
 # h is the step size, that is, the distance between each individual
@@ -58,10 +64,6 @@ y[0,0] = y0
 # initializing the dy variable at dy0
 dy = zeros([N+1, 1])
 dy[0,0] = dy0
-# miny is the minimum y value. This should be equal to exactly negative pi!
-miny = -3.14159
-# this is how much the minimum y value differs from its expected value, -pi
-err = abs(miny + pi)
 
 # integrate y until x => x1 - rtol
 for i in range(1,N+1):
@@ -74,20 +76,29 @@ for i in range(1,N+1):
     dy[i,0] = dy[i-1,0] + RK[0,1]
     # Add h to x
     x[i,0] = x[i-1,0] + h
-    # This is designed to determine miny and the error
-    while abs(y[i,0]+pi) < err:
-        miny = y[i,0]
-        err = abs(y[i,0]+pi)
-        logerr = log10(err)
+    
+miny     = min(y[:,0])
+yerr     = abs(miny + pi)
+mindy    = min(dy[:,0])
+dyerr    = abs(mindy + sqrt(2*g/l))
+logyerr  = log10(yerr)
+logdyerr = log10(dyerr)
 
+# Print N
+print("N is", N)
 # print x[N], i.e., the final x value calculated in the above while loop
 print("x[N] is", x[N,0])
 # print y[N], the final y value calculated in the above loop
 print("y[N] is", y[N,0])
 # print error
-print("err is", err)
+print("error in theta is", yerr)
 # error log to base 10
-print("log10 of err is", logerr)
+print("log10 of the error in theta is", logyerr)
+# print dy error
+print("error in theta dot is", dyerr)
+# dy error log to base 10
+print("log10 of the error in theta dot is", logdyerr)
+# Time taken to run script
 print("It took", round(time.time()-start, ndigits=2), "seconds for this script to run.")
 
 # Plot of angle against time
