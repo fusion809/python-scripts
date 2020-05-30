@@ -44,7 +44,7 @@ def RK4(h, x, y, dy):
 # integrating on x in [0,3]; x0 is 0; x1 is 3
 x0, x1 = 0, 2*T
 # N points the solution is being integrated over.
-N = 10000
+N = 1000000
 # h is the step size, that is, the distance between each individual
 # integration point
 h = (x1-x0)/N
@@ -79,11 +79,15 @@ for i in range(1,N+1):
 
 # Minimum value of theta   
 miny     = min(y[:,0])
-# This minimum value plus pi (the exact minimum is -pi); should be 0
+# Maximum value of theta
+maxy     = max(y[:,0])
+# The minimum value plus pi (the exact minimum is -pi); should be 0
 yerr     = abs(miny + pi)
-# This minimum value of theta dot
+# The minimum value of theta dot
 mindy    = min(dy[:,0])
-# This minimum value minus the exact minimum
+# The maximum value of theta dot
+maxdy    = max(dy[:,0])
+# The minimum value minus the exact minimum
 dyerr    = abs(mindy + sqrt(2*g/l))
 # log10 of these errors
 logyerr  = log10(yerr)
@@ -109,17 +113,23 @@ print("It took", round(time.time()-start, ndigits=2), "seconds for this script t
 # Plot of angle against time
 plt.figure(1)
 plt.plot(x,y)
+plt.xlim(0,2*T)
 plt.xlabel(r'$t$',fontsize=16)
+plt.ylim(miny-0.025,maxy+0.025)
 plt.ylabel(r'$\theta \hspace{0.2cm}$',fontsize=16,rotation=0)
 
 # Plot of theta dot against time
 plt.figure(2)
 plt.plot(x,dy)
+plt.xlim(0,2*T)
 plt.xlabel(r'$t$',fontsize=16)
-plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=20,rotation=0)
+plt.ylim(mindy-0.05,maxdy+0.05)
+plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=22,rotation=0)
 
 # Phase plot of theta dot against theta
 plt.figure(3)
 plt.plot(y,dy)
+plt.xlim(miny-0.025,maxy+0.025)
 plt.xlabel(r'$\theta$',fontsize=16)
-plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=20,rotation=0)
+plt.ylim(mindy-0.05,maxdy+0.05)
+plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=22,rotation=0)
