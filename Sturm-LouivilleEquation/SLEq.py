@@ -14,6 +14,7 @@ T=np.cos(np.arccos(x) * n)
 na=np.asarray(n).T
 Un=np.zeros((N+1,N+1))
 Ux=np.zeros((N-1,N-1))
+dT=np.zeros((N+1,N+1))
 for i in na:
     Un[i,i] = i
 
@@ -24,8 +25,8 @@ for i in nsub:
 dTsub=Ux*np.sin(np.arccos(xsub)*n)*Un
 dTm1=np.multiply(np.power(-1,n+1),np.power(n,2))
 dTp1=np.power(n,2)
-for i in n:
-    for j in n:
+for i in range(0,N+1):
+    for j in range(0,N+1):
         if i == 0:
             dT[i,j] = dTm1[j]
         elif i == N:

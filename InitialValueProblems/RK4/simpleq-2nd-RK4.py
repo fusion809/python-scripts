@@ -2,7 +2,10 @@
 import time
 start = time.time() # start time
 # Import the required modules
-from numpy import cos, matrix, pi, log10
+from numpy import cos, matrix, pi, log10, zeros
+from matplotlib import pyplot as plt
+from matplotlib import rc
+plt.rc('text', usetex=True)
 
 # The ODE we're solving is (note d2 = d^2 in the following equations):
 # d2y/dx2 = -g/l cos(y)
@@ -35,7 +38,7 @@ def RK4(h, x, y, dy):
 # integrating on x in [0,3]; x0 is 0; x1 is 3
 x0, x1 = 0, 3
 # N points the solution is being integrated over.
-N = 10000000
+N = 10000
 # h is the step size, that is, the distance between each individual
 # integration point
 h = (x1-x0)/N
@@ -47,39 +50,54 @@ y0 = 0
 # dy/dx [x = 0] = dy0
 dy0 = 0
 # initializing the x variable at x0
-x = x0
+x = zeros([N+1, 1])
+x[0,0] = x0
 # initializing the y variable at y0
-y = y0
+y = zeros([N+1, 1])
+y[0,0] = y0
 # initializing the dy variable at dy0
-dy = dy0
+dy = zeros([N+1, 1])
+dy[0,0] = dy0
 # miny is the minimum y value. This should be equal to exactly negative pi!
 miny = -3.14159
 # this is how much the minimum y value differs from its expected value, -pi
 err = abs(miny + pi)
 
 # integrate y until x => x1 - rtol
-while x < x1 - rtol:
+for i in range(1,N+1):
     # RK is a 1x2 vector of the incremental changes to be made to y and dy since
     # the previous x value
-    RK = RK4(h, x, y, dy)
+    RK = RK4(h, x[i-1,0], y[i-1,0], dy[i-1,0])
     # Add RK correction to y
-    y = y + RK[0,0]
+    y[i,0] = y[i-1,0] + RK[0,0]
     # Add RK correction to dy
-    dy = dy + RK[0,1]
+    dy[i,0] = dy[i-1,0] + RK[0,1]
     # Add h to x
-    x = x + h
+    x[i,0] = x[i-1,0] + h
     # This is designed to determine miny and the error
-    while abs(y+pi) < err:
-        miny = y
-        err = abs(y+pi)
+    while abs(y[i,0]+pi) < err:
+        miny = y[i,0]
+        err = abs(y[i,0]+pi)
         logerr = log10(err)
 
 # print x[N], i.e., the final x value calculated in the above while loop
-print("x[N] is", x)
+print("x[N] is", x[N,0])
 # print y[N], the final y value calculated in the above loop
-print("y[N] is", y)
+print("y[N] is", y[N,0])
 # print error
 print("err is", err)
 # error log to base 10
 print("log10 of err is", logerr)
 print("It took", round(time.time()-start, ndigits=2), "seconds for this script to run.")
+
+# Plot of angle against time
+plt.figure(1)
+plt.plot(x,y)
+plt.xlabel(r'$t$',fontsize=16)
+plt.ylabel(r'$\theta \hspace{0.2cm}$',fontsize=16,rotation=0)
+
+# Phase plot of theta dot against theta
+plt.figure(2)
+plt.plot(y,dy)
+plt.xlabel(r'$\theta$',fontsize=16)
+plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=20,rotation=0)
