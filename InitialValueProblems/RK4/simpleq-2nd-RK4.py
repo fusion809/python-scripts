@@ -76,11 +76,16 @@ for i in range(1,N+1):
     dy[i,0] = dy[i-1,0] + RK[0,1]
     # Add h to x
     x[i,0] = x[i-1,0] + h
-    
+
+# Minimum value of theta   
 miny     = min(y[:,0])
+# This minimum value plus pi (the exact minimum is -pi); should be 0
 yerr     = abs(miny + pi)
+# This minimum value of theta dot
 mindy    = min(dy[:,0])
+# This minimum value minus the exact minimum
 dyerr    = abs(mindy + sqrt(2*g/l))
+# log10 of these errors
 logyerr  = log10(yerr)
 logdyerr = log10(dyerr)
 
@@ -107,8 +112,14 @@ plt.plot(x,y)
 plt.xlabel(r'$t$',fontsize=16)
 plt.ylabel(r'$\theta \hspace{0.2cm}$',fontsize=16,rotation=0)
 
-# Phase plot of theta dot against theta
+# Plot of theta dot against time
 plt.figure(2)
+plt.plot(x,dy)
+plt.xlabel(r'$t$',fontsize=16)
+plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=20,rotation=0)
+
+# Phase plot of theta dot against theta
+plt.figure(3)
 plt.plot(y,dy)
 plt.xlabel(r'$\theta$',fontsize=16)
 plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=20,rotation=0)
