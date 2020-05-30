@@ -1,7 +1,0 @@
-= Python
-*Python* is a high-level, general-purpose, cross-platform interpreted language that is widely used for a variety of different purposes, including:
-
-* *Package management* — DNF, Entropy, Portage and yum are all examples of Linux package managers written in Python.
-* *Scientific computing*, especially numerical analysis, but also symbolic calculations. SageMath is the most notable example of mathematics software that is written in Python.
-* *Web development*. Python powers several different Wiki applications (including MoinMoin, which is used by the Debian and Ubuntu Wikis), along with Google
-* *Writing games*
