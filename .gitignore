@@ -1,4 +1,4 @@
 *.svg
-*.png
+#*.png
 Example*.py
 .ipynb_checkpoints

@@ -44,7 +44,7 @@ def RK4(h, x, y, dy):
 # integrating on x in [0,3]; x0 is 0; x1 is 3
 x0, x1 = 0, 2*T
 # N points the solution is being integrated over.
-N = 1000000
+N = 10000
 # h is the step size, that is, the distance between each individual
 # integration point
 h = (x1-x0)/N
