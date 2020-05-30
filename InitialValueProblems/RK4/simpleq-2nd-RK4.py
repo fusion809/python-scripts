@@ -113,23 +113,23 @@ print("It took", round(time.time()-start, ndigits=2), "seconds for this script t
 # Plot of angle against time
 plt.figure(1)
 plt.plot(x,y)
-plt.xlim(0,2*T)
+plt.xlim(-0.01,2*T+0.01)
 plt.xlabel(r'$t$',fontsize=16)
-plt.ylim(miny-0.025,maxy+0.025)
+plt.ylim(miny-0.02,maxy+0.02)
 plt.ylabel(r'$\theta \hspace{0.2cm}$',fontsize=16,rotation=0)
 
 # Plot of theta dot against time
 plt.figure(2)
 plt.plot(x,dy)
-plt.xlim(0,2*T)
+plt.xlim(-0.01,2*T+0.01)
 plt.xlabel(r'$t$',fontsize=16)
-plt.ylim(mindy-0.05,maxdy+0.05)
+plt.ylim(mindy-0.02,maxdy+0.02)
 plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=22,rotation=0)
 
 # Phase plot of theta dot against theta
 plt.figure(3)
 plt.plot(y,dy)
-plt.xlim(miny-0.025,maxy+0.025)
+plt.xlim(miny-0.02,maxy+0.02)
 plt.xlabel(r'$\theta$',fontsize=16)
-plt.ylim(mindy-0.05,maxdy+0.05)
+plt.ylim(mindy-0.02,maxdy+0.02)
 plt.ylabel(r'$\frac{d\theta}{dt}\hspace{0.2cm}$',fontsize=22,rotation=0)
