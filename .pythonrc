@@ -1,0 +1,24 @@
+import sys
+import datetime
+import colorama
+
+colorama.init(autoreset=True)
+
+class Prompt:
+  def __str__(self):
+    print(self.prompt, end='')
+    return ''
+
+class PS1(Prompt):
+
+  @property
+  def prompt(self):
+    return '{brace_c}[{time_c}{time}{brace_c}]{prompt_c}>>> '.format(
+              brace_c  = colorama.Fore.BLACK + colorama.Style.BRIGHT,
+              # style is preserved, so the following are also bright:
+              prompt_c = colorama.Fore.LIGHTYELLOW_EX,
+              time_c   = colorama.Fore.BLACK,
+              time     = datetime.datetime.now().strftime('%H:%M:%S %d/%m/%y'),
+            )
+
+sys.ps1 = PS1()

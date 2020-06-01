@@ -2,3 +2,4 @@
 #*.png
 Example*.py
 .ipynb_checkpoints
+*.gz

@@ -5,7 +5,7 @@
 # using Simpson's rule
 # t is time and y is theta 
 # Import the required NumPy functions
-from numpy import sin, pi, sqrt, zeros, abs
+from numpy import sin, pi, sqrt, zeros, abs, linspace
 # Import time
 import time
 start = time.time() # start time
@@ -25,20 +25,20 @@ def f(y):
 
 # Number of steps
 N=100000000
+
 # How close to theta=0 we start our integration and how
 # close to theta=-pi we end our intgration.
 # At theta=0,-pi our function becomes undefined, hence
 # why we cannot start at exact theta=0 or theta=-pi.
-tol=1/(25*N)
+tol=1/(22.202*N)
 # Integration interval, [y0, yend]
 y0=-tol
 yend=-pi+tol
 # Step size
 h=(yend-y0)/N
-# Initiate the t and y vectors
-t=zeros([N+1,1])
-y=zeros([N+1,1])
-y[0,0]=y0
+# Initiate t and y
+t=0
+y=y0
 
 # Our integration function
 def Simpson(h,y,i,N):
@@ -51,11 +51,14 @@ def Simpson(h,y,i,N):
 
 # The actual integration
 for i in range(0,N):
-    t[i+1,0] = t[i,0] + Simpson(h, y[i,0],i,N)
-    y[i+1,0] = y[i,0] + h
+    t = t + Simpson(h, y,i,N)
+    y = y + h
 
 # Number of steps
 print("N is", N)
+
+# Tol
+print("tol is", tol)
 
 # Time taken to run script
 print("It took", round(time.time()-start, ndigits=2), "seconds for this script to perform the integration.")
@@ -66,8 +69,5 @@ T=T[0]
 
 # Difference between our SciPy approximation and our 
 # approximation using Simpson's method
-error = abs(T + t[N,0])
+error = abs(T + t)
 print("The difference between what SciPy's quad computes and what we computed is", error)
-
-# Plot theta against t
-plt.plot(y,t)
