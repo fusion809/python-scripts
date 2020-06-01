@@ -26,7 +26,7 @@ def f(y):
 # Number of steps
 N=1000000
 NN=100
-tol=linspace(1/(5*N),1/(20*N),NN+1)
+tol=linspace(5.30339068e-8,5.30339069e-8,NN+1)
 error=zeros([NN+1,1])
 
 # Our SciPy approximation to the integral
