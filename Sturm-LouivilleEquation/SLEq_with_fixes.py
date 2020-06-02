@@ -12,7 +12,7 @@ start = time.time()
 # Number of steps
 N            = 10000
 # The domain we're transforming to is [a,b]
-b            = 100
+b            = 700
 a            = 0
 na           = np.arange(N+1)
 # Chebyshev extreme grid
@@ -44,6 +44,31 @@ values       = np.abs(values)
 idx          = values.argsort()[::1]   
 values       = values[idx]
 vecs         = vecs[:,idx]
+
+def f(xinput):
+    x0=xinput
+    xoutput=x0
+    Ai=airy(-xoutput)[0]
+
+    while np.abs(Ai)>1e-12:
+        ai=airy(-xoutput)
+        Ai=ai[0]
+        Aip=ai[1]
+        xoutput=xoutput+Ai/Aip
+
+    return xoutput
+
+NN=3000
+from numpy import zeros
+exact_values=zeros([NN+1,1])
+error_in_values=zeros([NN+1,1])
+for i in range(0,NN+1):
+    exact_values[i] = f(values[i])
+    error_in_values[i] = exact_values[i]-values[i]
+
+error_in_values = np.reshape(error_in_values,(NN+1,1))
+rms = np.sqrt(np.dot(np.reshape(error_in_values,(1,NN+1)),error_in_values)/(NN+1))[0][0]
+
 # Clear idx to save RAM
 del idx
 
@@ -90,6 +115,11 @@ plt.plot(ysub,vecs[:,9])
 # Plot the eleventh eigenvector
 plt.figure(11)
 plt.plot(ysub,vecs[:,10])
+
+# Plot errors
+n=np.linspace(0,NN,NN+1)
+plt.figure(12)
+plt.plot(n,np.abs(error_in_values))
 
 # Time taken to run script
 print("It took", round(time.time()-start, ndigits=2), "seconds for this script to perform the integration.")
