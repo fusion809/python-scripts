@@ -1,6 +1,11 @@
 import sys
 import datetime
 import colorama
+import os
+import numpy as np
+import scipy as sp
+import sympy as syp
+from matplotlib import pyplot as plt
 
 colorama.init(autoreset=True)
 
@@ -14,11 +19,11 @@ class PS1(Prompt):
   @property
   def prompt(self):
     return '{brace_c}[{time_c}{time}{brace_c}]{prompt_c}>>> '.format(
-              brace_c  = colorama.Fore.BLACK + colorama.Style.BRIGHT,
+              brace_c  = colorama.Fore.GREEN + colorama.Style.BRIGHT,
               # style is preserved, so the following are also bright:
               prompt_c = colorama.Fore.LIGHTYELLOW_EX,
-              time_c   = colorama.Fore.BLACK,
-              time     = datetime.datetime.now().strftime('%H:%M:%S %d/%m/%y'),
+              time_c   = colorama.Fore.GREEN,
+              time     = datetime.datetime.now().strftime('%l:%M:%S%p, %A %d/%m/%y'),
             )
 
 sys.ps1 = PS1()
