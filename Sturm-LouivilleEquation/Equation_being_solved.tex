@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper,openright]{article}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{sansmath}
+\usepackage{pst-eucl}
+\usepackage{float}
+\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{sectsty}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
+\newcommand{\diff}[3]{\dfrac{d^{#3}{#1}}{d{#2}^{#3}}}
+\newcommand{\question}[0]{\textbf{Question}: }
+\newcommand{\itq}[0]{\item \question}
+\newcommand{\answer}[0]{\textbf{Answer}: }
+\newcommand{\letlist}{\begin{enumerate}[label=(\alph*)]}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1.5}
+
+\begin{document}
+	\[
+	- \dfrac{d^2 y}{dx^2} + xy = \lambda y, \hspace{0.1cm}\mathrm{on} \hspace{0.1cm} x\in[0,\infty].
+	\]
+	
+	With the boundary conditions $y(0)=y(\infty)=0$. And where $\lambda$ is the eigenvalue of this Sturm-Louiville problem. 
+	
+	The analytical solutions to this problem are:
+	
+	\[
+	y_n(x) = \mathrm{Ai}(x-\lambda_n)
+	\]
+	
+	where the eigenvalues, $\lambda_n$, are the negative of the zeros of the Airy Ai function.
+\end{document}
