@@ -6,3 +6,4 @@
 Example*.py
 .ipynb_checkpoints
 *.gz
+__pycache__

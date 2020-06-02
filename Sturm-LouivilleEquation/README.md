@@ -2,15 +2,7 @@
 
 ## [SLEq_with_fixes.py](SLEq_with_fixes.py)
 
-In this script, Chebyshev spectral methods are used to numerically approximate the solution to the problem:
-
 ![Equation being solved](Equation_being_solved.png)
-
-A linear transformation of the Chebyshev extrema grid ([-1,1]) to [a,b] is used to approximate the domain [0,&infin;]
-
-![Analytical_solutions_to_the_problem_being_solved.png](Analytical_solutions_to_the_problem_being_solved.png)
-
-Among the eigenfunctions and eigenvalues that are accurately approximated by this script are:
 
 | #  | Eigenvalue | Plot                                          |
 |----|------------|-----------------------------------------------|
