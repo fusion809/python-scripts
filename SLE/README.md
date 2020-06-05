@@ -1,4 +1,4 @@
-# Sturm-Louiville problem solvers
+# Sturm-Liouville problem solvers
 
 ## [SLEq_with_fixes.py](SLEq_with_fixes.py)
 

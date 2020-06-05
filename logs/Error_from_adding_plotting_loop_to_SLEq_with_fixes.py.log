@@ -1,0 +1,38 @@
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+ in 
+      1 get_ipython().run_line_magic('reset', '-f')
+      2 get_ipython().run_line_magic('matplotlib', 'qt')
+----> 3 exec(open("SLEq_with_fixes.py").read())
+
+ in 
+
+/usr/lib/python3.8/site-packages/matplotlib/pyplot.py in plot(scalex, scaley, data, *args, **kwargs)
+   2759 @docstring.copy(Axes.plot)
+   2760 def plot(*args, scalex=True, scaley=True, data=None, **kwargs):
+-> 2761     return gca().plot(
+   2762         *args, scalex=scalex, scaley=scaley, **({"data": data} if data
+   2763         is not None else {}), **kwargs)
+
+/usr/lib/python3.8/site-packages/matplotlib/axes/_axes.py in plot(self, scalex, scaley, data, *args, **kwargs)
+   1644         """
+   1645         kwargs = cbook.normalize_kwargs(kwargs, mlines.Line2D)
+-> 1646         lines = [*self._get_lines(*args, data=data, **kwargs)]
+   1647         for line in lines:
+   1648             self.add_line(line)
+
+/usr/lib/python3.8/site-packages/matplotlib/axes/_base.py in __call__(self, *args, **kwargs)
+    214                 this += args[0],
+    215                 args = args[1:]
+--> 216             yield from self._plot_args(this, kwargs)
+    217 
+    218     def get_next_color(self):
+
+/usr/lib/python3.8/site-packages/matplotlib/axes/_base.py in _plot_args(self, tup, kwargs)
+    340 
+    341         if x.shape[0] != y.shape[0]:
+--> 342             raise ValueError(f"x and y must have same first dimension, but "
+    343                              f"have shapes {x.shape} and {y.shape}")
+    344         if x.ndim > 2 or y.ndim > 2:
+
+ValueError: x and y must have same first dimension, but have shapes (1000, 1) and (999,)

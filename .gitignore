@@ -1,6 +1,6 @@
 *.out
 *.aux
-*.log
+SLE/*.log
 octave_workspace
 *.pdf
 *.svg
