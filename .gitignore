@@ -9,3 +9,5 @@ Example*.py
 .ipynb_checkpoints
 *.gz
 __pycache__
+*.fdb_latexmk
+*.fls
