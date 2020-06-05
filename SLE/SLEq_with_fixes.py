@@ -174,17 +174,21 @@ plt.plot(y[0:1000],vecs[0:1000,9])
 plt.figure(11)
 plt.plot(y[0:1000],vecs[0:1000,10])
 
-# Plot NN+1th eigenvector
+# Plot the twelfth eigenvector
 plt.figure(12)
+plt.plot(y[0:1000],vecs[0:1000,11])
+
+# Plot NN+1th eigenvector
+plt.figure(13)
 plt.plot(y,vecs[:,NN+1])
 
 # Plot eigenvalue errors
 n=linspace(0,NN,NN+1)
-plt.figure(13)
+plt.figure(14)
 plt.plot(n,error_in_values[0:NN+1])
 
 # Plot eigenvector errors
-plt.figure(14)
+plt.figure(15)
 plt.plot(n,vecs_rms)
 
 # Time taken to run script
