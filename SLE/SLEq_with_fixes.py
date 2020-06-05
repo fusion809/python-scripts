@@ -22,13 +22,14 @@ a            = 0
 b            = 870
 # na=0,1,2,3,...,N
 na           = arange(N+1)
+# nad is the transpose of na
 nad          = reshape(na,(N+1,1))
-# t are values of t (the parameterization for the extrema grid
-# mentioned in Boyd, 2000)
+# t are values of t (the parameterization for the 
+# extrema grid mentioned in Boyd, 2000)
 t            = pi*(1-na/N)
 # td is the transpose of t
 td           = reshape(t,(N+1,1))
-# Chebyshev extreme grid
+# Chebyshev extrema grid
 xa           = cos(t)
 # Matrix of T_n(x_m) values
 # m is the row index and n is the column index
@@ -186,4 +187,4 @@ plt.figure(14)
 plt.plot(n,vecs_rms)
 
 # Time taken to run script
-print("It took:\n ", round(time.time()-start, ndigits=2), "seconds for this script to perform the integration.")
+print("It took:\n ", round(time.time()-start, ndigits=2), " seconds for this script to perform the integration.")
