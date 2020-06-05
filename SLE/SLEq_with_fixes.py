@@ -48,7 +48,8 @@ del dT
 # D2 = D1^2
 D2           = matmul(D1,D1)
 del D1
-# Linearly transformed independent variable to the problem
+# Linearly transformed independent variable to the 
+# problem
 ysub         = (b-a)/2*xa[1:N]+(a+b)/2
 # Save even more RAM by clearing na and xa
 del na, xa
