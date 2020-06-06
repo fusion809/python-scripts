@@ -69,10 +69,12 @@ def f(xinput):
     x0=xinput
     xoutput=x0
     # Initial value of Ai(-x)
-    Ai=airy(-xoutput)[0]
+    ai=airy(-xoutput)
+    Ai=ai[0]
+    Aip=ai[1]
 
     # Keep using Newton's until the error is acceptably small
-    while abs(Ai)>1e-12:
+    while abs(Ai/Aip)>1e-12:
         ai=airy(-xoutput)
         # Ai(-x)
         Ai=ai[0]
@@ -193,4 +195,4 @@ plt.figure(15)
 plt.plot(n,vecs_rms)
 
 # Time taken to run script
-print("It took:\n ", round(time.time()-start, ndigits=2), " seconds for this script to perform the integration.")
+print("It took:\n ", round(time.time()-start, ndigits=2), " seconds for this script to perform the computation.")
