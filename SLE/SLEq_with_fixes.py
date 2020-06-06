@@ -126,7 +126,7 @@ values_rms=sqrt(dot(reshape(error_in_values,(1,NN+1)),error_in_values)/(NN+1))[0
 print("N is:\n ", N)
 print("NN is:\n ", NN)
 print("b is:\n ", b)
-print("Root mean square error in the eigenvalues is:\n ", values_rms[0])
+print("Root mean square relative error in the eigenvalues is:\n ", values_rms[0])
 
 # The following cannot be replaced with a loop, I tried to do so on
 # 5 Jun 2020 and I received the error shown in ../logs/Error_from_adding_plotting_loop_to_SLEq_with_fixes.py.log
