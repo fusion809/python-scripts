@@ -105,8 +105,6 @@ vecs_rms=zeros([NN+1,1])
 for i in range(0,NN+1):
     # Use Newton's method to compute the eigenvalues more precisely
     exact_values[i] = f(values[i])
-    # Compute the relative error in eigenvalues
-    error_in_values[i] = abs((exact_values[i]-values[i])/exact_values[i])
     # Analytical eigenfunctions
     exact_vecs[:,i]=reshape(airy(y-exact_values[i,0])[0],(N+1))
     # Fixing the sign of our eigenfunctions
@@ -118,6 +116,9 @@ for i in range(0,NN+1):
     error_in_vecs[:,i]=abs((vecs[:,i]-exact_vecs[:,i])/max(abs(exact_vecs[:,i])))
     # Root mean square of the eigenfunction error
     vecs_rms[i]=sqrt(dot(reshape(error_in_vecs[:,i],(1,N+1)),error_in_vecs[:,i])/(N+1))[0]
+
+# Compute the relative error in eigenvalues
+error_in_values = abs(divide(exact_values-reshape(values[0:NN+1],(NN+1,1)),exact_values))
 
 # Eigenvalue root mean square error
 values_rms=sqrt(dot(reshape(error_in_values,(1,NN+1)),error_in_values)/(NN+1))[0]
