@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 # dy/dx = f(x,y)
 def f(x,y):
-    return 1.0+y**2
+    return 1+y**2
 
 def RK45(f, x0, xf, dxInitial, y0, epsilon):
     """
