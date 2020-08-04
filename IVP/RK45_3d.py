@@ -39,7 +39,7 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
         # the last iteration, as otherwise we won't finish at etactlx tf
         dt = min([dt, tf-t[i]])
         
-        # y approtimators
+        # r approtimators
         K1 = multiply(dt,f(t[i],x[i],y[i],z[i]))
         k1 = K1[0]
         l1 = K1[1]
@@ -65,7 +65,7 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
         l6 = K6[1]
         m6 = K6[2]
 
-        # x[i+1] approtimations
+        # r[i+1] approtimations
         x1 = x[i] + 25*k1/216 + 1408*k3/2565+2197*k4/4104-k5/5
         x2 = x[i] + 16*k1/135 + 6656*k3/12825 + 28561*k4/56430 - 9*k5/50 + 2*k6/55
         y1 = y[i] + 25*l1/216 + 1408*l3/2565+2197*l4/4104-l5/5

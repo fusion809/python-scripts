@@ -34,7 +34,7 @@ def RK45(f, x0, xf, dxInitial, y0, dy0, epsilon):
         # the last iteration, as otherwise we won't finish at exactly xf
         dx = min([dx, xf-x[i]])
         
-        # dy approximators
+        # y, dy approximators
         K1 = multiply(dx,f(x[i],y[i],dy[i]))
         k1 = K1[0]
         l1 = K1[1]
@@ -54,7 +54,7 @@ def RK45(f, x0, xf, dxInitial, y0, dy0, epsilon):
         k6 = K6[0]
         l6 = K6[1]
 
-        # y[i+1] approximations
+        # Solution approximations
         y1 = y[i] + 25*k1/216 + 1408*k3/2565+2197*k4/4104-k5/5
         y2 = y[i] + 16*k1/135 + 6656*k3/12825 + 28561*k4/56430 - 9*k5/50 + 2*k6/55
         dy1 = dy[i] + 25*l1/216 + 1408*l3/2565+2197*l4/4104-l5/5
