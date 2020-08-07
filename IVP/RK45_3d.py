@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # Import required Python modules
-# Freezes up with high CPU usage
 from numpy import *
 from matplotlib import pyplot as plt
 import matplotlib
