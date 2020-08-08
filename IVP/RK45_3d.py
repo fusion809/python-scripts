@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 import matplotlib
 
 # dr/dt = f(t,x,y,z)
+# where r = (x,y,z)
 def f(t,x,y,z):
     rho = 28
     sigma = 10
