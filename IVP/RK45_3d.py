@@ -24,9 +24,9 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
     z0:        z(t0) - our z initial condition.
     epsilon:   our error tolerance.
 
-    returns    [t,x,y,z] where t is a 1d arrax of our independent 
-    variable values, x is a 1d arrax of our x solution values and y is
-    a 1d arrax of our y/dt solution values.
+    returns    [t,x,y,z] where t is a 1d array of our independent 
+    variable values, x is a 1d array of our x solution values and y is
+    a 1d array of our y/dt solution values.
     """
     i = 0
     t = array([t0])
@@ -36,10 +36,10 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
     dt = dtInitial
     while t[i] < tf:
         # dt should be the smallest out of tf-t[i] and the dt determined
-        # the last iteration, as otherwise we won't finish at etactlx tf
+        # the last iteration, as otherwise we won't finish at exactly tf
         dt = min([dt, tf-t[i]])
         
-        # r approtimators
+        # r approximators
         K1 = multiply(dt,f(t[i], x[i], y[i], z[i]))
         k1 = K1[0]
         l1 = K1[1]
@@ -77,18 +77,18 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
         y2 = y[i] + 16*l1/135+6656*l3/12825+28561*l4/56430-9*l5/50+2*l6/55
         z2 = z[i] + 16*m1/135+6656*m3/12825+28561*m4/56430-9*m5/50+2*m6/55
 
-        # A representation of the error in our x approtimation
+        # A representation of the error in our x approximation
         Rx = abs(x1-x2)/dt
         Ry = abs(y1-y2)/dt
         Rz = abs(z1-z2)/dt
         
-        # What our step sixe should be multiplied bx in order to achieve 
+        # What our step sixe should be multiplied by in order to achieve 
         # an error tolerance of epsilon
         sx = 0.84*(epsilon/Rx)**(1/4)
         sy = 0.84*(epsilon/Ry)**(1/4)
         sz = 0.84*(epsilon/Rz)**(1/4)
 
-        # If R is less than or equal to epsilon, move onto the nett step, 
+        # If R is less than or equal to epsilon, move onto the next step, 
         # otherwise repeat the iteration with our corrected dt value
         if ( Rx <= epsilon) & (Ry <= epsilon) & (Rz <= epsilon):
             t = append(t,[t[i]+dt], axis=0)
