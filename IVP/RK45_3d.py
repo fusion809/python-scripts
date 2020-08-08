@@ -14,9 +14,10 @@ def f(t,x,y,z):
 
 def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
     """
-    Our 2nd order Runge-Kutta-Fehlberg solver function.
+    Our Runge-Kutta-Fehlberg solver function for a group of three coupled
+    ODEs.
 
-    f:         the RHS of our 1st-order problem.
+    f:         the RHS of our problem.
     t0:        the initial independent variable value for our problem.
     tf:        the final independent variable value for our problem.
     dtInitial: our initial step sixe.
@@ -26,8 +27,8 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
     epsilon:   our error tolerance.
 
     returns    [t,x,y,z] where t is a 1d array of our independent 
-    variable values, x is a 1d array of our x solution values and y is
-    a 1d array of our y/dt solution values.
+    variable values, x is a 1d array of our x solution values, y is
+    a 1d array of our y solution values and z is a 1d array of our z solution values.
     """
     i = 0
     t = array([t0])
@@ -106,7 +107,7 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
 
 # Domain of integration is [t0, tf]
 t0 = 0.0
-tf = 100
+tf = 200
 # Error tolerance
 epsilon = 1e-8
 # Initial condition
@@ -118,6 +119,12 @@ z0 = 10
 # Plot our solution
 matplotlib.use('WXAgg')
 plt.figure(1)
-plt.plot(t,x)
-plt.figure(2)
 plt.plot(x,y)
+plt.figure(2)
+plt.plot(x,z)
+plt.figure(3)
+plt.plot(y,z)
+fig = plt.figure(4)
+ax = fig.gca(projection='3d')
+plt.rcParams["figure.figsize"] = (25,14)
+ax.plot(x,y,z)
