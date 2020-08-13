@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Import required Python modules
-from numpy import *
+from numpy import array, append, abs, multiply
 from matplotlib import pyplot as plt
 import matplotlib
 
