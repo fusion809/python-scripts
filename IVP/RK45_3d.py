@@ -83,27 +83,23 @@ def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
         Rx = abs(x1-x2)/dt
         Ry = abs(y1-y2)/dt
         Rz = abs(z1-z2)/dt
+        R = max([Rx, Ry, Rz])
         
         # What our step sixe should be multiplied by in order to achieve 
         # an error tolerance of epsilon
-        sx = 0.84*(epsilon/Rx)**(1/4)
-        sy = 0.84*(epsilon/Ry)**(1/4)
-        sz = 0.84*(epsilon/Rz)**(1/4)
+        s = (epsilon/(2*R))**(1/4)
 
         # If R is less than or equal to epsilon, move onto the next step, 
         # otherwise repeat the iteration with our corrected dt value
-        if ( Rx <= epsilon) & (Ry <= epsilon) & (Rz <= epsilon):
+        if (R <= epsilon):
             t = append(t,[t[i]+dt], axis=0)
             x = append(x,[x1], axis=0)
             y = append(y,[y1], axis=0)
             z = append(z,[z1], axis=0)
             i += 1
-            dt *= min([sx, sy, sz])
-        else:
-            dt *= min([sx, sy, sz])
+        dt *= s
 
-    
-    return [t,x,y,z]
+    return t, x, y, z
 
 # Domain of integration is [t0, tf]
 t0 = 0.0
@@ -114,7 +110,7 @@ epsilon = 1e-8
 x0 = 10
 y0 = 10
 z0 = 10
-[t,x,y,z] = RK45(f, t0, tf, (tf-t0)/1000, x0, y0, z0, epsilon)
+t, x, y, z = RK45(f, t0, tf, (tf-t0)/1000, x0, y0, z0, epsilon)
 
 # Plot our solution
 matplotlib.use('WXAgg')

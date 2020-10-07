@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Import required Python modules
-from numpy import *
+from numpy import array, append, abs, multiply, cos, sqrt
 from matplotlib import pyplot as plt
 from scipy.special import ellipk
 
@@ -63,22 +63,20 @@ def RK45(f, x0, xf, dxInitial, y0, dy0, epsilon):
         # A representation of the error in our y approximation
         Ry = abs(y1-y2)/dx
         Rdy = abs(dy1-dy2)/dx
+        R = max([Ry, Rdy])
 
         # What our step size should be multiplied by in order to achieve 
         # an error tolerance of epsilon
-        sy = 0.84*(epsilon/Ry)**(1/4)
-        sdy = 0.84*(epsilon/Rdy)**(1/4)
+        s = (epsilon/(2*R))**(1/4)
         
         # If R is less than or equal to epsilon, move onto the next step, 
         # otherwise repeat the iteration with our corrected dx value
-        if ( Ry <= epsilon) & (Rdy <= epsilon ):
+        if ( R <= epsilon):
             x = append(x,[x[i]+dx], axis=0)
             y = append(y,[y1], axis=0)
             dy = append(dy,[dy1], axis=0)
             i += 1
-            dx *= min([sy, sdy])
-        else:
-            dx *= min([sy, sdy])
+        dx *= s
     
     return [x,y,dy]
 
@@ -90,7 +88,7 @@ epsilon = 4e-12
 # Initial condition
 y0 = 0.0
 dy0 = 0.0
-[x,y,dy] = RK45(f, x0, xf, (xf-x0)/100, y0, dy0, epsilon)
+x, y, dy = RK45(f, x0, xf, (xf-x0)/100, y0, dy0, epsilon)
 
 # Plot our solution
 plt.rcParams["figure.figsize"] = (25,14)

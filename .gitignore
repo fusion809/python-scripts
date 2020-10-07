@@ -11,3 +11,4 @@ Example*.py
 __pycache__
 *.fdb_latexmk
 *.fls
+octave-workspace
