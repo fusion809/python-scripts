@@ -4,10 +4,25 @@ from numpy import *
 import time
 from RKF45 import RKF45
 
-def f(params, t, vars, dt):
+class paramObj:
+    def __init__(self, sigma, rho, beta):
+        self.sigma = sigma
+        self.rho = rho
+        self.beta = beta
+
+def Lorenz(params, t, vars, dt):
+    """Function that, for the Lorenz system, returns dx, dy, dz.
+
+    params:   An object of parameters created using paramObj.
+    t:        Time value.
+    vars:     NumPy array of x, y and z values.
+    dt:       Time step.
+
+    returns:  Array of dx, dy and dz.
     """
-    """
-    sigma, rho, beta = params[0], params[1], params[2]
+    sigma = params.sigma
+    rho = params.rho
+    beta = params.beta
     x, y, z = vars[0], vars[1], vars[2]
     dx = dt * (sigma*(y-x))
     dy = dt * (x*(rho-z)-y)
@@ -21,13 +36,13 @@ epsilon = 1e-9
 x0 = 1
 y0 = 1
 z0 = 1
-dtInitial = 0.1               
+dtInitial = 1e-2       
 conds = array([[x0, y0, z0]])
-params = array([10, 28, 8/3])
+params = paramObj(sigma = 10, rho = 28, beta = 8/3)
 
 # Solve problem and time it
 start_time = time.perf_counter()
-t, vars = RKF45(f, t0, tf, dtInitial, params, conds, epsilon)
+t, vars = RKF45(Lorenz, t0, tf, dtInitial, params, conds, epsilon)
 end_time = time.perf_counter()
 difference = end_time - start_time
 print("It took: ", difference, " seconds for this command to run")
