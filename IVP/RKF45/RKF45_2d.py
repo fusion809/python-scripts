@@ -8,7 +8,7 @@ from scipy.special import ellipk
 def f(x,y,dy):
     return [dy, -9.8*cos(y)]
 
-def RK45(f, x0, xf, dxInitial, y0, dy0, epsilon):
+def RKF45(f, x0, xf, dxInitial, y0, dy0, epsilon):
     """
     Our 2nd order Runge-Kutta-Fehlberg solver function.
 
@@ -88,7 +88,7 @@ epsilon = 4e-12
 # Initial condition
 y0 = 0.0
 dy0 = 0.0
-x, y, dy = RK45(f, x0, xf, (xf-x0)/100, y0, dy0, epsilon)
+x, y, dy = RKF45(f, x0, xf, (xf-x0)/100, y0, dy0, epsilon)
 
 # Plot our solution
 plt.rcParams["figure.figsize"] = (25,14)

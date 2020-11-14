@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 def f(x,y):
     return 1+y**2
 
-def RK45(f, x0, xf, dxInitial, y0, epsilon):
+def RKF45(f, x0, xf, dxInitial, y0, epsilon):
     """
     Our Runge-Kutta-Fehlberg solver function.
 
@@ -68,7 +68,7 @@ xf = pi/4
 epsilon = 5e-12
 # Initial condition
 y0 = 0.0
-[x,y] = RK45(f, x0, xf, (xf-x0)/100, y0, epsilon)
+[x,y] = RKF45(f, x0, xf, (xf-x0)/100, y0, epsilon)
 
 # Our exact solution evaluated at the grid used for our approximation
 yexact = tan(x)

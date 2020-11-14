@@ -12,7 +12,7 @@ def f(t,x,y,z):
     beta = 8.0/3.0
     return [sigma*(y-x), x*(rho-z)-y, x*y-beta*z]
 
-def RK45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
+def RKF45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
     """
     Our Runge-Kutta-Fehlberg solver function for a group of three coupled
     ODEs.
@@ -110,7 +110,7 @@ epsilon = 1e-8
 x0 = 10
 y0 = 10
 z0 = 10
-t, x, y, z = RK45(f, t0, tf, (tf-t0)/1000, x0, y0, z0, epsilon)
+t, x, y, z = RKF45(f, t0, tf, (tf-t0)/1000, x0, y0, z0, epsilon)
 
 # Plot our solution
 matplotlib.use('WXAgg')
