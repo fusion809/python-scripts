@@ -44,7 +44,7 @@ def RKF45(f, t0, tf, dtInitial, params, conds, epsilon):
         depVars1 += multiply(2197/4104, K4) + multiply(-1/5, K5)
         # 5th order approx for depVars[i+1,:]
         depVars2 = depVars[i,:] + multiply(16/135, K1) + multiply(6656/12825, K3) 
-        depVars2 += multiply(28561/56430, K4) + multiply(-9/50, K5);
+        depVars2 += multiply(28561/56430, K4) + multiply(-9/50, K5)
         depVars2 += multiply(2/55, K6)
         
         # Rarr is an array of error estimates for depVars[i+1,:]
