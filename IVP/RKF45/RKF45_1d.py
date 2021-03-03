@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Import required Python modules
-from numpy import *
+import numpy as np
 from matplotlib import pyplot as plt
 
 # dy/dx = f(x,y)
@@ -22,8 +22,8 @@ def RKF45(f, x0, xf, dxInitial, y0, epsilon):
     and y is a 1d array of our solution values.
     """
     i = 0
-    x = array([x0])
-    y = array([y0])
+    x = np.array([x0])
+    y = np.array([y0])
     dx = dxInitial
     while x[i] < xf:
         # dx should be the smallest out of xf-x[i] and the dx determined
@@ -52,8 +52,8 @@ def RKF45(f, x0, xf, dxInitial, y0, epsilon):
         # If R is less than or equal to epsilon, move onto the next step, 
         # otherwise repeat the iteration with our corrected dx value
         if R <= epsilon:
-            x = append(x,[x[i]+dx], axis=0)
-            y = append(y,[y1], axis=0)
+            x = np.append(x,[x[i]+dx], axis=0)
+            y = np.append(y,[y1], axis=0)
             i += 1
             dx *= s
         else:
@@ -63,7 +63,7 @@ def RKF45(f, x0, xf, dxInitial, y0, epsilon):
 
 # Domain of integration is [x0, xf]
 x0 = 0.0
-xf = pi/4
+xf = np.pi/4
 # Error tolerance
 epsilon = 5e-12
 # Initial condition
@@ -71,12 +71,12 @@ y0 = 0.0
 [x,y] = RKF45(f, x0, xf, (xf-x0)/100, y0, epsilon)
 
 # Our exact solution evaluated at the grid used for our approximation
-yexact = tan(x)
+yexact = np.tan(x)
 
 # Perform a little error analysis
-error = abs(yexact-y)
-print("The maximum error is", max(error))
-rmsError = sqrt(dot(error,error)/len(error))
+error = np.abs(yexact-y)
+print("The maximum error is", np.max(error))
+rmsError = np.sqrt(np.dot(error,error)/len(error))
 print("rmsError is", rmsError)
 
 # Plot our solution
