@@ -101,26 +101,30 @@ def RKF45(f, t0, tf, dtInitial, x0, y0, z0, epsilon):
 
     return t, x, y, z
 
-# Domain of integration is [t0, tf]
-t0 = 0.0
-tf = 200
-# Error tolerance
-epsilon = 1e-8
-# Initial condition
-x0 = 10
-y0 = 10
-z0 = 10
-t, x, y, z = RKF45(f, t0, tf, (tf-t0)/1000, x0, y0, z0, epsilon)
+def main():
+    # Domain of integration is [t0, tf]
+    t0 = 0.0
+    tf = 200
+    # Error tolerance
+    epsilon = 1e-8
+    # Initial condition
+    x0 = 10
+    y0 = 10
+    z0 = 10
+    t, x, y, z = RKF45(f, t0, tf, (tf-t0)/1000, x0, y0, z0, epsilon)
 
-# Plot our solution
-matplotlib.use('WXAgg')
-plt.figure(1)
-plt.plot(x,y)
-plt.figure(2)
-plt.plot(x,z)
-plt.figure(3)
-plt.plot(y,z)
-fig = plt.figure(4)
-ax = fig.gca(projection='3d')
-plt.rcParams["figure.figsize"] = (25,14)
-ax.plot(x,y,z)
+    # Plot our solution
+    matplotlib.use('WXAgg')
+    plt.figure(1)
+    plt.plot(x,y)
+    plt.figure(2)
+    plt.plot(x,z)
+    plt.figure(3)
+    plt.plot(y,z)
+    fig = plt.figure(4)
+    ax = fig.gca(projection='3d')
+    plt.rcParams["figure.figsize"] = (25,14)
+    ax.plot(x,y,z)
+
+if __name__ == "__main__":
+    main()

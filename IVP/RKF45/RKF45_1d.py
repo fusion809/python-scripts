@@ -61,24 +61,28 @@ def RKF45(f, x0, xf, dxInitial, y0, epsilon):
     
     return [x,y]
 
-# Domain of integration is [x0, xf]
-x0 = 0.0
-xf = np.pi/4
-# Error tolerance
-epsilon = 5e-12
-# Initial condition
-y0 = 0.0
-[x,y] = RKF45(f, x0, xf, (xf-x0)/100, y0, epsilon)
+def main():
+    # Domain of integration is [x0, xf]
+    x0 = 0.0
+    xf = np.pi/4
+    # Error tolerance
+    epsilon = 5e-12
+    # Initial condition
+    y0 = 0.0
+    [x,y] = RKF45(f, x0, xf, (xf-x0)/100, y0, epsilon)
 
-# Our exact solution evaluated at the grid used for our approximation
-yexact = np.tan(x)
+    # Our exact solution evaluated at the grid used for our approximation
+    yexact = np.tan(x)
 
-# Perform a little error analysis
-error = np.abs(yexact-y)
-print("The maximum error is", np.max(error))
-rmsError = np.sqrt(np.dot(error,error)/len(error))
-print("rmsError is", rmsError)
+    # Perform a little error analysis
+    error = np.abs(yexact-y)
+    print("The maximum error is", np.max(error))
+    rmsError = np.sqrt(np.dot(error,error)/len(error))
+    print("rmsError is", rmsError)
 
-# Plot our solution
-plt.rcParams["figure.figsize"] = (25,14)
-plt.plot(x,y)
+    # Plot our solution
+    plt.rcParams["figure.figsize"] = (25,14)
+    plt.plot(x,y)
+
+if __name__ == "__main__":
+    main()

@@ -80,19 +80,23 @@ def RKF45(f, x0, xf, dxInitial, y0, dy0, epsilon):
     
     return [x,y,dy]
 
-# Domain of integration is [x0, xf]
-x0 = 0.0
-xf = 2*ellipk(1/2)/sqrt(2.45)
-# Error tolerance
-epsilon = 4e-12
-# Initial condition
-y0 = 0.0
-dy0 = 0.0
-x, y, dy = RKF45(f, x0, xf, (xf-x0)/100, y0, dy0, epsilon)
+def main():
+    # Domain of integration is [x0, xf]
+    x0 = 0.0
+    xf = 2*ellipk(1/2)/sqrt(2.45)
+    # Error tolerance
+    epsilon = 4e-12
+    # Initial condition
+    y0 = 0.0
+    dy0 = 0.0
+    x, y, dy = RKF45(f, x0, xf, (xf-x0)/100, y0, dy0, epsilon)
 
-# Plot our solution
-plt.rcParams["figure.figsize"] = (25,14)
-plt.figure(1)
-plt.plot(x,y)
-plt.figure(2)
-plt.plot(y,dy)
+    # Plot our solution
+    plt.rcParams["figure.figsize"] = (25,14)
+    plt.figure(1)
+    plt.plot(x,y)
+    plt.figure(2)
+    plt.plot(y,dy)
+
+if __name__ == "__main__":
+    main()
