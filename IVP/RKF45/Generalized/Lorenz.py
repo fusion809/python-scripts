@@ -29,35 +29,39 @@ def Lorenz(params, t, vars, dt):
     dz = dt * (x*y - beta*z)
     return np.array([dx, dy, dz])
 
-# Problem parameters
-t0 = 0.0
-tf = 60.0
-epsilon = 1e-9
-x0, y0, z0 = 1.0, 1.0, 1.0
-dtInitial = 1e-2       
-conds = np.array([[x0, y0, z0]])
-params = paramObj(sigma = 10, rho = 28, beta = 8/3)
+def main():
+    # Problem parameters
+    t0 = 0.0
+    tf = 60.0
+    epsilon = 1e-9
+    x0, y0, z0 = 1.0, 1.0, 1.0
+    dtInitial = 1e-2       
+    conds = np.array([[x0, y0, z0]])
+    params = paramObj(sigma = 10, rho = 28, beta = 8/3)
 
-# Solve problem and time it
-start_time = time.perf_counter()
-t, vars = RKF45(Lorenz, t0, tf, dtInitial, params, conds, epsilon)
-end_time = time.perf_counter()
-difference = end_time - start_time
-print("It took: ", difference, " seconds for this command to run")
+    # Solve problem and time it
+    start_time = time.perf_counter()
+    t, vars = RKF45(Lorenz, t0, tf, dtInitial, params, conds, epsilon)
+    end_time = time.perf_counter()
+    difference = end_time - start_time
+    print("It took: ", difference, " seconds for this command to run")
 
-# Plot data
-matplotlib.use('TkAgg')
-import matplotlib as mpl
-from mpl_toolkits.mplot3d import Axes3D
-fig = plt.figure(1)
-ax = fig.gca(projection='3d')
-ax.plot(vars[:,0], vars[:,1], vars[:,2])
-#plt.savefig("Lorenz-3D.svg")
-plt.show()
-plt.figure(2)
-plt.plot(t, vars[:,0], label="x")
-plt.plot(t, vars[:,1], label="y")
-plt.plot(t, vars[:,2], label="z")
-plt.legend()
-#plt.savefig("Lorenz-time.svg")
-plt.show()
+    # Plot data
+    matplotlib.use('TkAgg')
+    import matplotlib as mpl
+    from mpl_toolkits.mplot3d import Axes3D
+    fig = plt.figure(1)
+    ax = fig.gca(projection='3d')
+    ax.plot(vars[:,0], vars[:,1], vars[:,2])
+    #plt.savefig("Lorenz-3D.svg")
+    plt.show()
+    plt.figure(2)
+    plt.plot(t, vars[:,0], label="x")
+    plt.plot(t, vars[:,1], label="y")
+    plt.plot(t, vars[:,2], label="z")
+    plt.legend()
+    #plt.savefig("Lorenz-time.svg")
+    plt.show()
+
+if __name__ == "__main__":
+    main()

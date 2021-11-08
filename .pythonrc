@@ -26,4 +26,4 @@ class PS1(Prompt):
               time     = datetime.datetime.now().strftime('%l:%M:%S%p, %A %d/%m/%y'),
             )
 
-sys.ps1 = PS1()
+#sys.ps1 = PS1()
