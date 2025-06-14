@@ -44,7 +44,7 @@ def doubPen(params, t, vars, dt):
     drag2r = (b2r + c2r*v2r)*(r1*thetaDot1 + r2*thetaDot2*np.cos(theta1-theta2)/2)
     drag2r2 = 1/4*(b2r + c2r*v2r)*(2*r1*thetaDot1*np.cos(theta1-theta2) + r2*thetaDot2)
     innercoef = -m2b*np.cos(theta1-theta2)/(m1r/12+m1b+m2b)
-    inner = innercoef*(m2b*r2*thetaDot2**2*np.sin(theta1-theta2) - g*np.cos(theta1)*(m1r/2+m2r+m1b+m2b)-drag1b-drag2b-drag1r-drag2r)
+    inner = innercoef*(-m2b*r2*thetaDot2**2*np.sin(theta1-theta2) - g*np.cos(theta1)*(m1r/2+m2r+m1b+m2b)-drag1b-drag2b-drag1r-drag2r)
     extra = m2b*(r1*thetaDot1**2*np.sin(theta1-theta2)-g*np.cos(theta2))-drag2r2-drag2b2
     thetaDDot2 = outercoef*(inner+extra)
     outercoef1 = 1/((m1r/12+m1b+m2b)*r1)
