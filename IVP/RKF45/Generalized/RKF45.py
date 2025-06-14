@@ -26,6 +26,7 @@ def RKF45(f, t0, tf, dtInitial, params, conds, epsilon):
     t = array([t0])
     depVars = conds
     dt = dtInitial
+    dtarr = [dt]
 
     # Loop over time values
     while (t[i] < tf):
@@ -59,5 +60,6 @@ def RKF45(f, t0, tf, dtInitial, params, conds, epsilon):
             i += 1
         
         dt *= s
+        dtarr.append(dt)
 
-    return t, depVars
+    return t, depVars, dtarr

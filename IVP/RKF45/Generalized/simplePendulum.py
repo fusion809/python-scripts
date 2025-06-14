@@ -24,7 +24,7 @@ def main():
     dtInitial = 1e-2       
     conds = np.array([[theta0, thetaDot0]])    
     params = paramObj(g=9.81, l=1.0)
-    t, vars = RKF45(simpPen, t0, tf, dtInitial, params, conds, epsilon)
+    t, vars, dt = RKF45(simpPen, t0, tf, dtInitial, params, conds, epsilon)
 
     # Plot data
     matplotlib.use('TkAgg')
